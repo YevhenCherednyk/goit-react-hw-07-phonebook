@@ -4,6 +4,7 @@ import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import Section from 'components/Section';
+import Loader from 'components/Loader';
 import { fetchContacts } from 'redux/operations';
 import { selectIsLoading, selectError } from 'redux/selectors';
 import { ToastContainer } from 'react-toastify';
@@ -25,7 +26,7 @@ export default function App() {
       </Section>
       <Section title="Contacts">
         <Filter />
-        {isLoading && !error && <b>Request in progress...</b>}
+        {isLoading && !error && <Loader/>}
         <ContactList />
       </Section>
       <ToastContainer theme="colored" autoClose={3000} />
