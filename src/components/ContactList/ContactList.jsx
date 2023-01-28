@@ -10,8 +10,8 @@ const ContactList = () => {
 
   return (
     <List>
-      {filteredContacts.map(({ id, name, number }) => (
-        <ContactItem key={id} contact={{ id, name, number }} />
+      {filteredContacts.map(({ id, name, phone }) => (
+        <ContactItem key={id} contact={{ id, name, phone }} />
       ))}
     </List>
   );
@@ -22,7 +22,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     })
   ),
 };
