@@ -12,14 +12,12 @@ const Filter = () => {
     dispatch(setQuery(query));
   };
 
+  const handleChange = evt => onChange(evt.target.value);
+
   return (
     <Label>
       <Span>Find contacts by name</Span>
-      <Input
-        type="text"
-        value={query}
-        onChange={evt => onChange(evt.target.value)}
-      />
+      <Input type="text" value={query} onChange={handleChange} />
     </Label>
   );
 };

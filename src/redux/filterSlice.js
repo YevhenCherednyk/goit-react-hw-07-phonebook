@@ -16,4 +16,4 @@ const contactsFilter = createSlice({
 
 export const { setQuery } = contactsFilter.actions;
 
-export default contactsFilter.reducer;
+export const filterReducer = contactsFilter.reducer;

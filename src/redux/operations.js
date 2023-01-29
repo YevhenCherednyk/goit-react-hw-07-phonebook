@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://63d502cdc52305feff6c5fea.mockapi.io';
 
@@ -10,7 +11,8 @@ export const fetchContacts = createAsyncThunk(
       const { data } = await axios.get('/contacts');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error('Something was wrong!');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -22,7 +24,8 @@ export const addContact = createAsyncThunk(
       const { data } = await axios.post('/contacts', { name, phone });
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error('Something was wrong!');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -34,7 +37,8 @@ export const deleteContact = createAsyncThunk(
       const { data } = await axios.delete(`/contacts/${id}`);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error('Something was wrong!');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

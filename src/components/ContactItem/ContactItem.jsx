@@ -1,16 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { toast } from 'react-toastify';
+import { selectError } from 'redux/selectors';
 import { Item, ContactInfo, NameBox, Button } from './ContactItem.styled';
 
 const ContactItem = ({ contact: { id, name, phone } }) => {
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
 
   const onDeleteContact = id => {
     dispatch(deleteContact(id));
-    toast.info(`${name} removed from contacts.`);
+    !error && toast.info(`${name} removed from contacts.`);
   };
 
   return (
@@ -23,16 +24,6 @@ const ContactItem = ({ contact: { id, name, phone } }) => {
       </Button>
     </Item>
   );
-};
-
-ContactItem.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
-    })
-  ),
 };
 
 export default ContactItem;
