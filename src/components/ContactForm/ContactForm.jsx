@@ -2,11 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { toast } from 'react-toastify';
 import { Form, Label, Span, Input, Button } from './ContactForm.styled';
-import { selectContacts, selectError } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 export default function ContactForm() {
   const contacts = useSelector(selectContacts);
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   const handleSubmit = evt => {
@@ -30,8 +29,6 @@ export default function ContactForm() {
     };
 
     dispatch(addContact(newContact));
-
-    !error && toast.info(`${name.value} added to contacts.`);
 
     evt.target.reset();
   };
